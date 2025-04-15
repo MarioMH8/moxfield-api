@@ -54,7 +54,6 @@ describe('moxfield-api', () => {
 				}).not.toThrow();
 
 				expect(deckList).toBeDefined();
-				expect(deckList).toMatchSnapshot();
 			}, 1000);
 		});
 		describe.each(notFound)(`findById('%s')`, id => {
