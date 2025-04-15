@@ -69,4 +69,4 @@ bun run build
 
 ## MIT License
 
-[Copyright 2021-2024 MarioMH](./LICENSE)
+[Copyright 2021-2025 MarioMH](./LICENSE)
