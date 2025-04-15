@@ -1,0 +1,63 @@
+{
+	"name": "moxfield-api",
+	"version": "0.1.2",
+	"description": "A Javascript library for https://moxfield.com written in Typescript.",
+	"keywords": [
+		"tournament",
+		"moxfield",
+		"api"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/MarioMH8/moxfield-api.git"
+	},
+	"homepage": "https://github.com/MarioMH8/moxfield-api",
+	"bugs": {
+		"url": "https://github.com/MarioMH8/moxfield-api/issues"
+	},
+	"license": "MIT",
+	"publishConfig": {
+		"access": "public"
+	},
+	"type": "module",
+	"files": [
+		"dist"
+	],
+	"main": "./dist/moxfield-api.js",
+	"module": "./dist/moxfield-api.js",
+	"types": "./dist/moxfield-api.d.ts",
+	"exports": {
+		".": {
+			"import": {
+				"types": "./dist/moxfield-api.d.ts",
+				"default": "./dist/moxfield-api.js"
+			},
+			"require": {
+				"types": "./dist/moxfield-api.d.cts",
+				"default": "./dist/moxfield-api.cjs"
+			},
+			"default": "./dist/moxfield-api.js"
+		}
+	},
+	"scripts": {
+		"build": "tsup",
+		"lint": "eslint .",
+		"lint:fix": "eslint --fix .",
+		"prepublishOnly": "tsup",
+		"test": "bun test",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"zod": "^3.24.1",
+		"zod-fetch": "^0.1.1"
+	},
+	"devDependencies": {
+		"@changesets/cli": "2.29.0",
+		"@hexadrop/eslint-config": "0.1.2",
+		"@hexadrop/tsconfig": "0.0.5",
+		"@types/bun": "1.2.9",
+		"eslint": "9.24.0",
+		"tsup": "8.4.0",
+		"typescript": "5.8.3"
+	}
+}
