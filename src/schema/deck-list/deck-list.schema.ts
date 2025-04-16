@@ -52,7 +52,7 @@ const DeckListSchema = z
 		isTooBeaucoup: z.boolean(),
 		lastUpdatedAtUtc: z.coerce.date(),
 		likeCount: z.number(),
-		main: CardSchema,
+		main: CardSchema.nullish(),
 		mainCardIdIsBackFace: z.boolean(),
 		media: z.array(z.never()),
 		name: z.string(),
