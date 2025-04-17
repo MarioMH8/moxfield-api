@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 const FormatSchema = z.union([
 	z.literal('alchemy'),
+	z.literal('archon'),
 	z.literal('brawl'),
 	z.literal('commander'),
 	z.literal('commanderPrecons'),
