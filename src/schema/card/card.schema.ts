@@ -13,7 +13,7 @@ const CardSchema = z
 	.object({
 		acorn: z.boolean(),
 		arena_id: z.number().nullish(),
-		artist: z.string(),
+		artist: z.string().nullish(),
 		attraction_lights: z.array(z.number()).nullish(),
 		border_color: z.string(),
 		card_faces: z.array(CardFaceSchema),
