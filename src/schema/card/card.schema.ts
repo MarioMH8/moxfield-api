@@ -62,6 +62,7 @@ const CardSchema = z
 		loyalty: z.string().nullish(),
 		mana_cost: z.string().nullish(),
 		meld_part: MeldPartSchema.nullish(),
+		meld_parts: z.array(MeldPartSchema).nullish(),
 		meld_result: MeldResultSchema.nullish(),
 		mtgo_id: z.number().nullish(),
 		multiverse_ids: z.array(z.number()).nullish(),
