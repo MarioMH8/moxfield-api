@@ -48,6 +48,8 @@ const DeckListSchema = z
 		includeBasicLandsInPrice: z.boolean(),
 		includeCommandersInPrice: z.boolean(),
 		includeSignatureSpellsInPrice: z.boolean(),
+		isMature: z.boolean().nullish(),
+		isMatureAuto: z.boolean().nullish(),
 		isShared: z.boolean(),
 		isTooBeaucoup: z.boolean(),
 		lastUpdatedAtUtc: z.coerce.date(),
