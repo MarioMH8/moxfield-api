@@ -50,6 +50,7 @@ const DeckListSchema = z
 		includeSignatureSpellsInPrice: z.boolean(),
 		isMature: z.boolean().nullish(),
 		isMatureAuto: z.boolean().nullish(),
+		isMatureMod: z.boolean().nullish(),
 		isShared: z.boolean(),
 		isTooBeaucoup: z.boolean(),
 		lastUpdatedAtUtc: z.coerce.date(),
