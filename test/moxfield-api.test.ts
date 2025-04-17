@@ -30,6 +30,9 @@ const decks = [
 	'r1UXi2eZ7EqH8Ja3G4-SHA',
 	'q6fGFZsn-kyEkFk-uPVbCg',
 	'ahaLbinAG0WBmcSu0rhc4Q',
+	'https://moxfield.com/decks/f-K2-xxOhUW807uf1SdheA',
+	'https://moxfield.com/decks/sepRQdrvuUG9ctVMBgepAA',
+	'https://www.moxfield.com/decks/s65XSsJdRUqhZw4EmoedOA',
 ];
 
 const notFound = [
@@ -54,7 +57,7 @@ describe('moxfield-api', () => {
 				}).not.toThrow();
 
 				expect(deckList).toBeDefined();
-			}, 1000);
+			}, 10_000);
 		});
 		describe.each(notFound)(`findById('%s')`, id => {
 			it('should throw not found', () => {
