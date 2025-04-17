@@ -45,7 +45,7 @@ const CardSchema = z
 		flavor_name: z.string().nullish(),
 		flavor_text: z.string().nullish(),
 		foil: z.boolean(),
-		frame: z.string(),
+		frame: z.string().nullish(),
 		frame_effects: z.array(z.string()).nullish(),
 		glossy: z.boolean(),
 		has_arena_legal: z.boolean(),
