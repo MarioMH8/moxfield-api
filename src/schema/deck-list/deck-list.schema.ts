@@ -10,7 +10,6 @@ import { ColorIdentitySchema } from '../color-identity';
 import { ColorIdentityPercentagesSchema } from '../color-identity-percentages';
 import { ColorPercentagesSchema } from '../color-percentages';
 import { FolderSchema } from '../folder';
-import { FormatSchema } from '../format';
 import { HubSchema } from '../hub';
 import OriginalDeckSchema from '../original-deck/original-deck.schema';
 import { TokenMappingsSchema } from '../token-mappings';
@@ -41,7 +40,7 @@ const DeckListSchema = z
 		enableMultiplePrintings: z.boolean(),
 		exportId: z.string().uuid(),
 		folder: FolderSchema.nullish(),
-		format: FormatSchema,
+		format: z.string(),
 		hubs: z.array(HubSchema),
 		id: z.string(),
 		ignoreBrackets: z.boolean(),

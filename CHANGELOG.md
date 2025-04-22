@@ -1,5 +1,11 @@
 # moxfield-api
 
+## 0.0.6
+
+### Patch Changes
+
+- 6ee15f8: Replace FormatSchema with string in deck list schema
+
 ## 0.0.5
 
 ### Patch Changes
