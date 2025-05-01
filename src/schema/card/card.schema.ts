@@ -53,6 +53,7 @@ const CardSchema = z
 		id: z.string(),
 		image_seq: z.number(),
 		isArenaLegal: z.boolean(),
+		isCovered: z.boolean(),
 		isPauperCommander: z.boolean(),
 		isToken: z.boolean(),
 		lang: z.string(),
