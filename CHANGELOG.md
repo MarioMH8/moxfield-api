@@ -1,5 +1,11 @@
 # moxfield-api
 
+## 0.0.7
+
+### Patch Changes
+
+- 23a3ea6: Add `isCovered` field to card schema
+
 ## 0.0.6
 
 ### Patch Changes
