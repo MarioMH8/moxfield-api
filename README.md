@@ -49,7 +49,6 @@ import MoxfieldApi from 'moxfield-api';
 const moxfield = new MoxfieldApi();
 
 const decklist = await moxfield.decklist.findById('https://moxfield.com/decks/oEWXWHM5eEGMmopExLWRCA'); // OR oEWXWHM5eEGMmopExLWRCA
-
 ```
 
 ## Contributing
