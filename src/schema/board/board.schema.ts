@@ -2,9 +2,11 @@ import { z } from 'zod';
 
 import { BoardCardSchema } from '../board-card';
 
-const BoardSchema = z.object({
-	cards: z.record(z.string(), BoardCardSchema),
-	count: z.number(),
-});
+const BoardSchema = z
+	.object({
+		cards: z.record(z.string(), BoardCardSchema),
+		count: z.number(),
+	})
+	.strict();
 
 export default BoardSchema;
