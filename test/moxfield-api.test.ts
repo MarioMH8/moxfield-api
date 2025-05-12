@@ -33,13 +33,13 @@ const decks = [
 	'https://moxfield.com/decks/f-K2-xxOhUW807uf1SdheA',
 	'https://moxfield.com/decks/sepRQdrvuUG9ctVMBgepAA',
 	'https://www.moxfield.com/decks/s65XSsJdRUqhZw4EmoedOA',
+	'https://moxfield.com/decks/pn2RZRo48EGUucqr4CTCPA',
 ];
 
 const notFound = [
 	'https://moxfield.com/decks/PwGdlurB3EGDJ6HbDRx-2g',
 	'https://www.moxfield.com/decks/f29zyYl6IkSZlYxS2IMA8Q',
 	'https://moxfield.com/decks/oww8YuIatkaj25VXdvf8xQ',
-	'https://moxfield.com/decks/pn2RZRo48EGUucqr4CTCPA',
 	'https://moxfield.com/decks/AS-5NUNKi0yCxNtTasmF7g',
 ];
 
