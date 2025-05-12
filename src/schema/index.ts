@@ -20,6 +20,7 @@ export * from './meld-part';
 export * from './meld-result';
 export * from './original-deck';
 export * from './prices';
+export * from './print-card';
 export * from './rarity';
 export * from './set-type';
 export * from './token-mappings';

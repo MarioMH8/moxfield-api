@@ -1,6 +1,6 @@
 import DeckListApi from './deck-list';
 
-class TopdeckApi {
+class MoxfieldApi {
 	readonly deckList: DeckListApi;
 
 	constructor() {
@@ -8,4 +8,4 @@ class TopdeckApi {
 	}
 }
 
-export default TopdeckApi;
+export default MoxfieldApi;
