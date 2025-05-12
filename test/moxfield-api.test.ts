@@ -34,6 +34,7 @@ const decks = [
 	'https://moxfield.com/decks/sepRQdrvuUG9ctVMBgepAA',
 	'https://www.moxfield.com/decks/s65XSsJdRUqhZw4EmoedOA',
 	'https://moxfield.com/decks/pn2RZRo48EGUucqr4CTCPA',
+	'https://moxfield.com/decks/dp8QKvCr3EqGF9-qu5Zzfg',
 ];
 
 const notFound = [
