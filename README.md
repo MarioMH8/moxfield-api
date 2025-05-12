@@ -21,6 +21,8 @@
 
 - [Installation](#installation)
 - [Documentation](#documentation)
+    - [Decklist](#decklist)
+        - [`findById(id: string): Promise<DeckListType>`](#findbyidid-string-promisedecklisttype)
 - [Contributing](#contributing)
 
 ## Installation
@@ -36,6 +38,18 @@ bun add moxfield-api
 ```
 
 ## Documentation
+
+### Decklist
+
+#### `findById(id: string): Promise<DeckListType>`
+
+```typescript
+import MoxfieldApi from 'moxfield-api';
+
+const moxfield = new MoxfieldApi();
+
+const decklist = await moxfield.decklist.findById('https://moxfield.com/decks/oEWXWHM5eEGMmopExLWRCA'); // OR oEWXWHM5eEGMmopExLWRCA
+```
 
 ## Contributing
 
