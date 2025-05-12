@@ -1,0 +1,23 @@
+name: Add changeset to renovate updates
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  renovate:
+    name: Update renovate
+    runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.labels.*.name, 'dependencies')
+
+    steps:
+      - name: Update PR
+        uses: mscharley/dependency-changesets-action@v1.1.4
+        with:
+          token: ${{ github.token }}
+          use-conventional-commits: true
+          sign-commits: true
