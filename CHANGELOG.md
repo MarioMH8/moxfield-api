@@ -1,5 +1,14 @@
 # moxfield-api
 
+## 0.0.8
+
+### Patch Changes
+
+- 50831cc: Add profileImageUrl field to author schema
+- a230482: Add PrintCardSchema and integrate it into BoardCardSchema
+- d0a90a5: Expand PricesSchema with additional fields and enforce strict mode
+- b434aa0: Enforce strict mode on various schema definitions
+
 ## 0.0.7
 
 ### Patch Changes
