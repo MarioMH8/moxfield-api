@@ -57,7 +57,7 @@
 		"@hexadrop/tsconfig": "0.0.5",
 		"@types/bun": "1.2.13",
 		"eslint": "9.26.0",
-		"tsup": "8.4.0",
+		"tsup": "8.5.0",
 		"typescript": "5.8.3"
 	}
 }
