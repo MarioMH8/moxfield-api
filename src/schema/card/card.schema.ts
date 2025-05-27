@@ -12,6 +12,7 @@ import { SetTypeSchema } from '../set-type';
 const CardSchema = z
 	.object({
 		acorn: z.boolean(),
+		allRaritiesMask: z.number().nullish(),
 		arena_id: z.number().nullish(),
 		artist: z.string().nullish(),
 		attraction_lights: z.array(z.number()).nullish(),
