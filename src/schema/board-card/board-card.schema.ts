@@ -9,11 +9,13 @@ const BoardCardSchema = z
 	.object({
 		boardType: BoardTypeSchema,
 		card: CardSchema,
+		cmcOverride: z.number().nullish(),
 		excludedFromColor: z.boolean(),
 		finish: FinishSchema,
 		isAlter: z.boolean(),
 		isFoil: z.boolean(),
 		isProxy: z.boolean(),
+		manaCostOverride: z.string().nullish(),
 		printingData: z.array(PrintCardSchema).nullish(),
 		quantity: z.number(),
 		useCmcOverride: z.boolean(),
