@@ -1,5 +1,13 @@
 # moxfield-api
 
+## 0.0.9
+
+### Patch Changes
+
+- c06d9fa: Add allRaritiesMask field to card schema
+- 43af651: Add new fields for market prices in prices schema
+- 1f34a57: Add cmcOverride and manaCostOverride fields to board card schema
+
 ## 0.0.8
 
 ### Patch Changes
