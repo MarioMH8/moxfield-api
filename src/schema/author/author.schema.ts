@@ -5,6 +5,7 @@ const AuthorSchema = z
 		badges: z.array(z.string()),
 		displayName: z.string(),
 		profileImageUrl: z.string().url().nullish(),
+		promos: z.array(z.unknown()).nullish(),
 		userName: z.string(),
 	})
 	.strict();
