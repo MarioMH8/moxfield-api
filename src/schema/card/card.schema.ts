@@ -63,6 +63,7 @@ const CardSchema = z
 		legalities: LegalitiesSchema,
 		loyalty: z.string().nullish(),
 		mana_cost: z.string().nullish(),
+		manapool_url: z.string().url().nullish(),
 		meld_part: MeldPartSchema.nullish(),
 		meld_parts: z.array(MeldPartSchema).nullish(),
 		meld_result: MeldResultSchema.nullish(),
