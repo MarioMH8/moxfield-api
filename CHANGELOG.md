@@ -1,5 +1,12 @@
 # moxfield-api
 
+## 0.0.10
+
+### Patch Changes
+
+- ae48140: Add isCompanion field to board card schema
+- 047cc3d: Add manapool_url field to card schema
+
 ## 0.0.9
 
 ### Patch Changes
