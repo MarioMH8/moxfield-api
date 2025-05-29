@@ -13,6 +13,7 @@ const BoardCardSchema = z
 		excludedFromColor: z.boolean(),
 		finish: FinishSchema,
 		isAlter: z.boolean(),
+		isCompanion: z.boolean().nullish(),
 		isFoil: z.boolean(),
 		isProxy: z.boolean(),
 		manaCostOverride: z.string().nullish(),
