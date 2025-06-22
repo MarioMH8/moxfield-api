@@ -34,7 +34,6 @@ const decks = [
 	'https://moxfield.com/decks/f-K2-xxOhUW807uf1SdheA',
 	'https://moxfield.com/decks/sepRQdrvuUG9ctVMBgepAA',
 	'https://www.moxfield.com/decks/s65XSsJdRUqhZw4EmoedOA',
-	'https://moxfield.com/decks/pn2RZRo48EGUucqr4CTCPA',
 	'https://moxfield.com/decks/dp8QKvCr3EqGF9-qu5Zzfg',
 ];
 
@@ -45,6 +44,7 @@ const notFound = [
 	 * 'https://moxfield.com/decks/oww8YuIatkaj25VXdvf8xQ',
 	 */
 	'https://moxfield.com/decks/AS-5NUNKi0yCxNtTasmF7g',
+	'https://moxfield.com/decks/pn2RZRo48EGUucqr4CTCPA',
 ];
 
 describe('moxfield-api', () => {
