@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Update PR
-        uses: mscharley/dependency-changesets-action@v1.1.4
+        uses: mscharley/dependency-changesets-action@v1.1.8
         with:
           token: ${{ github.token }}
           use-conventional-commits: true
