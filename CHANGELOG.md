@@ -1,5 +1,11 @@
 # moxfield-api
 
+## 0.0.12
+
+### Patch Changes
+
+- 3b41f99: Add colorIdentityOverride field to board card schema
+
 ## 0.0.11
 
 ### Patch Changes
