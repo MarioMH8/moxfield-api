@@ -4,7 +4,7 @@
     "": {
       "name": "moxfield-api",
       "dependencies": {
-        "zod": "^3.24.1",
+        "zod": "^4.0.0",
         "zod-fetch": "^0.1.1",
       },
       "devDependencies": {
@@ -1131,7 +1131,7 @@
 
     "yocto-queue": ["yocto-queue@0.1.0", "", {}, "sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q=="],
 
-    "zod": ["zod@3.24.2", "", {}, "sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ=="],
+    "zod": ["zod@4.0.0", "", {}, "sha512-9diLdTPc/L7w/5jI4C3gHYNiGHDV9IZYxo1e5LSD8cabi65WVTWWb+g2BGPEpUUCOxR4D+6O5B0AzyMdUAXwrw=="],
 
     "zod-fetch": ["zod-fetch@0.1.1", "", {}, "sha512-1YqEhqjIQuatiHGCiKceAEzLrd2PZAN/Y8lWSlhkec2nDuImePieFWX33WSB+c1E4P/kEiai7rb8upBMdjFo1w=="],
 
