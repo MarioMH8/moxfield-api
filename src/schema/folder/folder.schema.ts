@@ -1,10 +1,10 @@
 import { z } from 'zod';
 
-const FolderSchema = z
-	.object({
-		id: z.string(),
-		name: z.string(),
-	})
-	.strict();
+import { testStrict } from '../../helpers';
 
-export default FolderSchema;
+const FolderSchema = z.object({
+	id: z.string(),
+	name: z.string(),
+});
+
+export default testStrict(FolderSchema);

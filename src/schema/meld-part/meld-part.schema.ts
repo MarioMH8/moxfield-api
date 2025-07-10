@@ -1,13 +1,13 @@
 import { z } from 'zod';
 
-const MeldPartSchema = z
-	.object({
-		id: z.string(),
-		imageCardId: z.string(),
-		imageCardIdIsCardFace: z.boolean(),
-		name: z.string(),
-		uniqueCardId: z.string(),
-	})
-	.strict();
+import { testStrict } from '../../helpers';
 
-export default MeldPartSchema;
+const MeldPartSchema = z.object({
+	id: z.string(),
+	imageCardId: z.string(),
+	imageCardIdIsCardFace: z.boolean(),
+	name: z.string(),
+	uniqueCardId: z.string(),
+});
+
+export default testStrict(MeldPartSchema);
