@@ -26,9 +26,13 @@ const LegalitiesFormatSchema = z.union([
 	z.literal('vintage'),
 ]);
 
-const LegalitiesSchema = z.record(
-	LegalitiesFormatSchema,
-	z.union([z.literal('legal'), z.literal('not_legal'), z.literal('banned'), z.literal('restricted')])
-);
+const LegalitiesValueSchema = z.union([
+	z.literal('legal'),
+	z.literal('not_legal'),
+	z.literal('banned'),
+	z.literal('restricted'),
+]);
+
+const LegalitiesSchema = z.partialRecord(LegalitiesFormatSchema, LegalitiesValueSchema);
 
 export default LegalitiesSchema;

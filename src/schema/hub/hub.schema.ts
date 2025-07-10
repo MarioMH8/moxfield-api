@@ -1,10 +1,10 @@
 import { z } from 'zod';
 
-const HubSchema = z
-	.object({
-		description: z.string(),
-		name: z.string(),
-	})
-	.strict();
+import { testStrict } from '../../helpers';
 
-export default HubSchema;
+const HubSchema = z.object({
+	description: z.string(),
+	name: z.string(),
+});
+
+export default testStrict(HubSchema);

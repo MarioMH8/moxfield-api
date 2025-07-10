@@ -1,15 +1,15 @@
 import { z } from 'zod';
 
-const AffiliatesSchema = z
-	.object({
-		ch: z.string(),
-		ck: z.string(),
-		cm: z.string(),
-		csi: z.string(),
-		ct: z.string(),
-		scg: z.string(),
-		tcg: z.string(),
-	})
-	.strict();
+import { testStrict } from '../../helpers';
 
-export default AffiliatesSchema;
+const AffiliatesSchema = z.object({
+	ch: z.string(),
+	ck: z.string(),
+	cm: z.string(),
+	csi: z.string(),
+	ct: z.string(),
+	scg: z.string(),
+	tcg: z.string(),
+});
+
+export default testStrict(AffiliatesSchema);
