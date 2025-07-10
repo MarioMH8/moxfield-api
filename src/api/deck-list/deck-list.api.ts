@@ -12,7 +12,7 @@ const deckListIdSchema = z.coerce
 	.string()
 	.describe('DeckList id')
 	.transform(value => {
-		const parsed = z.coerce.string().url().safeParse(value);
+		const parsed = z.url().safeParse(value);
 		if (parsed.error) {
 			return value;
 		}
