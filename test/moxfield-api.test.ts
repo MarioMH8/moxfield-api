@@ -20,7 +20,6 @@ const decks = [
 	'vh511ix7TUazHGSuH75fRw',
 	'QXXHQKdslk-w1wF73huQJA',
 	'3rSpv0GzX0uyTwZO-64tKQ',
-	'cfMQrOvVLUukZc_nDEoHKg',
 	'jmxBjBorlESr7AUe-qEpdQ',
 	'238SYpWztkeeibwf5XnBoA',
 	'G8mskkjteES7TUUghfXX5w',
@@ -35,6 +34,7 @@ const decks = [
 	'https://moxfield.com/decks/sepRQdrvuUG9ctVMBgepAA',
 	'https://www.moxfield.com/decks/s65XSsJdRUqhZw4EmoedOA',
 	'https://moxfield.com/decks/dp8QKvCr3EqGF9-qu5Zzfg',
+	'https://moxfield.com/decks/pn2RZRo48EGUucqr4CTCPA',
 ];
 
 const notFound = [
@@ -44,7 +44,6 @@ const notFound = [
 	 * 'https://moxfield.com/decks/oww8YuIatkaj25VXdvf8xQ',
 	 */
 	'https://moxfield.com/decks/AS-5NUNKi0yCxNtTasmF7g',
-	'https://moxfield.com/decks/pn2RZRo48EGUucqr4CTCPA',
 ];
 
 describe('moxfield-api', () => {
