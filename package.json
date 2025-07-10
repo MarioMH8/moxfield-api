@@ -1,6 +1,6 @@
 {
 	"name": "moxfield-api",
-	"version": "0.0.12",
+	"version": "1.0.0",
 	"description": "A Javascript library for https://moxfield.com written in Typescript.",
 	"keywords": [
 		"deck",
