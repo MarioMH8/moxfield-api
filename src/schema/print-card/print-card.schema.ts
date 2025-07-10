@@ -8,13 +8,13 @@ import { RaritySchema } from '../rarity';
 const PrintCardSchema = z
 	.object({
 		card: CardSchema,
-		cardHoarderUrl: z.string().url().nullish(),
+		cardHoarderUrl: z.url().nullish(),
 		cardKingdomFoilUrl: z.string().nullish(),
 		cardKingdomUrl: z.string().nullish(),
-		cardMarketUrl: z.string().url().nullish(),
+		cardMarketUrl: z.url().nullish(),
 		cn: z.string(),
-		coolStuffIncFoilUrl: z.string().url().nullish(),
-		coolStuffIncUrl: z.string().url().nullish(),
+		coolStuffIncFoilUrl: z.url().nullish(),
+		coolStuffIncUrl: z.url().nullish(),
 		finish: FinishSchema,
 		foil: z.boolean(),
 		hash: z.string(),
@@ -31,7 +31,7 @@ const PrintCardSchema = z
 		rarity: RaritySchema,
 		set: z.string(),
 		set_name: z.string(),
-		tcgPlayerUrl: z.string().url().nullish(),
+		tcgPlayerUrl: z.url().nullish(),
 	})
 	.strict();
 
