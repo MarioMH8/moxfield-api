@@ -1,5 +1,16 @@
 # moxfield-api
 
+## 1.0.0
+
+### Major Changes
+
+- d0b275a: fix(deps): update dependency zod to v4
+- 0fb730f: Makes `strict()` only applies in tests
+
+### Patch Changes
+
+- 73d72b8: Add bookmarkCount field to deck list schema
+
 ## 0.0.12
 
 ### Patch Changes
