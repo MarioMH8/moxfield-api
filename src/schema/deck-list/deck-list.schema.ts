@@ -27,6 +27,7 @@ const DeckListSchema = z
 		authorTags: AuthorTagsSchema,
 		autoBracket: z.number().nullish(),
 		boards: BoardsSchema,
+		bookmarkCount: z.coerce.number().nullish(),
 		bracket: z.number().nullish(),
 		cardsToTokens: CardsToTokensSchema,
 		colorIdentity: z.array(ColorIdentitySchema),
