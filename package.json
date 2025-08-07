@@ -58,6 +58,6 @@
 		"@types/bun": "1.2.19",
 		"eslint": "9.32.0",
 		"tsup": "8.5.0",
-		"typescript": "5.8.3"
+		"typescript": "5.9.2"
 	}
 }
