@@ -53,7 +53,7 @@
 	},
 	"devDependencies": {
 		"@changesets/cli": "2.29.5",
-		"@hexadrop/eslint-config": "0.1.4",
+		"@hexadrop/eslint-config": "0.1.5",
 		"@hexadrop/tsconfig": "0.0.5",
 		"@types/bun": "1.2.19",
 		"eslint": "9.32.0",
