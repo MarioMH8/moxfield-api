@@ -52,7 +52,7 @@
 		"zod-fetch": "^0.1.1"
 	},
 	"devDependencies": {
-		"@changesets/cli": "2.29.5",
+		"@changesets/cli": "2.29.6",
 		"@hexadrop/eslint-config": "0.1.5",
 		"@hexadrop/tsconfig": "0.0.5",
 		"@types/bun": "1.2.20",
