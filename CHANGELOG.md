@@ -1,5 +1,11 @@
 # moxfield-api
 
+## 1.0.1
+
+### Patch Changes
+
+- 7494989: Fix types
+
 ## 1.0.0
 
 ### Major Changes
