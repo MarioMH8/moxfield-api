@@ -6,8 +6,9 @@ import isTest from './is-test';
 
 export default function conditionalStrict<Shape extends $ZodLooseShape, O extends ZodObject<util.Writeable<Shape>>>(
 	schema: O
-): O | ReturnType<typeof z.strictObject<Shape>> {
+): O {
 	if (isTest()) {
+		// @ts-expect-error Strict type
 		return z.strictObject(schema.shape);
 	}
 
