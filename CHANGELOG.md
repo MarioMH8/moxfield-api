@@ -1,5 +1,11 @@
 # moxfield-api
 
+## 1.0.2
+
+### Patch Changes
+
+- ce62732: Add `eternal` type to set-type schema for enhanced categorization
+
 ## 1.0.1
 
 ### Patch Changes
