@@ -10,7 +10,7 @@
       },
       "devDependencies": {
         "@changesets/cli": "2.29.8",
-        "@hexadrop/eslint-config": "0.1.11",
+        "@hexadrop/eslint-config": "0.1.15",
         "@hexadrop/tsconfig": "0.0.5",
         "@types/bun": "1.3.3",
         "eslint": "9.39.1",
@@ -176,7 +176,7 @@
 
     "@eslint/plugin-kit": ["@eslint/plugin-kit@0.4.1", "", { "dependencies": { "@eslint/core": "^0.17.0", "levn": "^0.4.1" } }, "sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA=="],
 
-    "@hexadrop/eslint-config": ["@hexadrop/eslint-config@0.1.11", "", { "dependencies": { "@eslint/markdown": "7.5.0", "@stylistic/eslint-plugin": "5.5.0", "@typescript-eslint/eslint-plugin": "8.46.2", "@typescript-eslint/parser": "8.46.2", "astro-eslint-parser": "1.2.2", "eslint-config-flat-gitignore": "2.1.0", "eslint-flat-config-utils": "2.1.4", "eslint-import-resolver-typescript": "4.4.4", "eslint-merge-processors": "2.0.0", "eslint-parser-plain": "0.1.1", "eslint-plugin-astro": "1.3.1", "eslint-plugin-format": "1.0.2", "eslint-plugin-import-x": "4.16.1", "eslint-plugin-jsonc": "2.21.0", "eslint-plugin-n": "17.23.1", "eslint-plugin-perfectionist": "4.15.1", "eslint-plugin-react": "7.37.5", "eslint-plugin-react-hooks": "7.0.1", "eslint-plugin-react-refresh": "0.4.24", "eslint-plugin-simple-import-sort": "12.1.1", "eslint-plugin-unicorn": "62.0.0", "eslint-plugin-unused-imports": "4.3.0", "globals": "16.4.0", "jsonc-eslint-parser": "2.4.1", "local-pkg": "1.1.2", "prettier": "3.6.2", "prettier-plugin-astro": "0.14.1", "tslib": "2.8.1" }, "peerDependencies": { "eslint": "^9.17.0" } }, "sha512-D0rMPEmZXX1U9euTimhdQEGQovpYKTxSeyAZ8p350EdAlqhBGvIUhrheZOuRhLxSSxVbz62CRwEOgoL/KX51Ew=="],
+    "@hexadrop/eslint-config": ["@hexadrop/eslint-config@0.1.15", "", { "dependencies": { "@eslint/markdown": "7.5.0", "@stylistic/eslint-plugin": "5.5.0", "@typescript-eslint/eslint-plugin": "8.46.2", "@typescript-eslint/parser": "8.46.2", "astro-eslint-parser": "1.2.2", "eslint-config-flat-gitignore": "2.1.0", "eslint-flat-config-utils": "2.1.4", "eslint-import-resolver-typescript": "4.4.4", "eslint-merge-processors": "2.0.0", "eslint-parser-plain": "0.1.1", "eslint-plugin-astro": "1.3.1", "eslint-plugin-format": "1.0.2", "eslint-plugin-import-x": "4.16.1", "eslint-plugin-jsonc": "2.21.0", "eslint-plugin-n": "17.23.1", "eslint-plugin-perfectionist": "4.15.1", "eslint-plugin-react": "7.37.5", "eslint-plugin-react-hooks": "7.0.1", "eslint-plugin-react-refresh": "0.4.24", "eslint-plugin-simple-import-sort": "12.1.1", "eslint-plugin-unicorn": "62.0.0", "eslint-plugin-unused-imports": "4.3.0", "globals": "16.4.0", "jsonc-eslint-parser": "2.4.1", "local-pkg": "1.1.2", "prettier": "3.6.2", "prettier-plugin-astro": "0.14.1", "tslib": "2.8.1" }, "peerDependencies": { "eslint": "^9.17.0" } }, "sha512-YGCOJo8yrU3IymyV/pBg923sWxcRjEeZ6NNhJ5MCqHzX3EpzTjIF8P3osF+tp3UJKLA6/dArBUIa3ZO9qJx6DQ=="],
 
     "@hexadrop/tsconfig": ["@hexadrop/tsconfig@0.0.5", "", {}, "sha512-sbm1lpigRiBFt8KHffORW/4sst2BP3ZP+3MzA/MbnE9QtvLPgv9NoPB8SlJRxywJUy7zuXXzAE9DNJrOBDGgOg=="],
 
