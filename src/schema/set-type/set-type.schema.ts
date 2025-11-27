@@ -9,6 +9,7 @@ const SetTypeSchema = z.union([
 	z.literal('core'),
 	z.literal('draft_innovation'),
 	z.literal('duel_deck'),
+	z.literal('eternal'),
 	z.literal('expansion'),
 	z.literal('from_the_vault'),
 	z.literal('funny'),
