@@ -23,6 +23,7 @@ const LegalitiesFormatSchema = z.union([
 	z.literal('standard'),
 	z.literal('standardbrawl'),
 	z.literal('timeless'),
+	z.literal('tlr'),
 	z.literal('vintage'),
 ]);
 
