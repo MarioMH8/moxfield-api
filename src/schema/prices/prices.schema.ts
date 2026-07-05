@@ -38,6 +38,7 @@ const PricesSchema = z.object({
 	scg_foil_qty: z.number().nullish(),
 	scg_qty: z.number().nullish(),
 	tix: z.number().nullish(),
+	tix_fb: z.number().nullish(),
 	usd: z.number().nullish(),
 	usd_etched: z.number().nullish(),
 	usd_foil: z.number().nullish(),
