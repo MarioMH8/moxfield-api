@@ -25,6 +25,12 @@ jobs:
               core.notice(`Renovate PR`);
               return;
             }
+
+            const labels = pr.labels.map(l => l.name);
+            if (labels.includes('release')) {
+              core.notice('Release PR: linked issue is not required.');
+              return;
+            }
             
             const body = context.payload.pull_request.body || '';
             const pattern = /(?:closes|fixes|resolves)\s+#(\d+)/gi;
@@ -62,6 +68,12 @@ jobs:
             const user = pr.user;
             if (user.id === 29139614 && user.type === 'Bot') {
               core.notice(`Renovate PR`);
+              return;
+            }
+
+            const labels = pr.labels.map(l => l.name);
+            if (labels.includes('release')) {
+              core.notice('Release PR: linked issue approval check is skipped.');
               return;
             }
 
@@ -144,6 +156,11 @@ jobs:
               core.notice(`Renovate PR`);
               return;
             }
+
+            if (labels.includes('release')) {
+              core.notice('Release PR: type:* label is not required.');
+              return;
+            }
             
             const validTypes = ['type:bug', 'type:feature', 'type:refactor', 'type:docs', 'type:chore', 'type:breaking-change'];
 
@@ -197,13 +214,9 @@ jobs:
             }
 
             const labels = pr.labels.map(l => l.name);
+            const isReleasePR = labels.includes('release');
             const typeLabels = labels.filter(l => l.startsWith('type:'));
             const requiresChangeset = ['type:bug', 'type:feature', 'type:refactor'];
-
-            if (typeLabels.length !== 1 || !requiresChangeset.includes(typeLabels[0])) {
-              core.info(`No changeset required for label: ${typeLabels[0] || 'none'}`);
-              return;
-            }
 
             const { data: files } = await github.rest.pulls.listFiles({
               owner: context.repo.owner,
@@ -217,6 +230,24 @@ jobs:
               f.filename.endsWith('.md') &&
               f.filename !== '.changeset/README.md'
             );
+
+            if (isReleasePR) {
+              if (changesetFiles.length > 0) {
+                core.error('Release PR must not include changeset files.');
+                core.setFailed(
+                  'Release PRs must not contain .changeset/*.md files.\n' +
+                  `Found: ${changesetFiles.map(f => f.filename).join(', ')}`
+                );
+              } else {
+                core.info('✅ Release PR has no changeset files.');
+              }
+              return;
+            }
+
+            if (typeLabels.length !== 1 || !requiresChangeset.includes(typeLabels[0])) {
+              core.info(`No changeset required for label: ${typeLabels[0] || 'none'}`);
+              return;
+            }
 
             if (changesetFiles.length === 0) {
               core.error(`PR labelled ${typeLabels[0]} must include a changeset.`);
