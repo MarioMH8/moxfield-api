@@ -56,7 +56,7 @@
 		"@hexadrop/eslint-config": "0.1.19",
 		"@hexadrop/tsconfig": "0.0.5",
 		"@types/bun": "1.3.14",
-		"eslint": "9.39.4",
+		"eslint": "10.6.0",
 		"tsup": "8.5.1",
 		"typescript": "6.0.3"
 	}
