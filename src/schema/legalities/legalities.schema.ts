@@ -6,6 +6,7 @@ const LegalitiesFormatSchema = z.union([
 	z.literal('alchemy'),
 	z.literal('brawl'),
 	z.literal('commander'),
+	z.literal('competitivebrawl'),
 	z.literal('duel'),
 	z.literal('explorer'),
 	z.literal('future'),
