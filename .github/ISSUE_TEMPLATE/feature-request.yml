@@ -1,0 +1,68 @@
+name: "Feature request"
+description: "Suggest an idea to improve the project"
+title: "feat: "
+labels: ["type:feature", "status:needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for sharing your idea.
+
+        Please provide enough context so we can evaluate and prioritize it quickly.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: "Pre-check"
+      options:
+        - label: "I searched existing issues and this feature has not been requested yet"
+          required: true
+
+  - type: textarea
+    id: problem_statement
+    attributes:
+      label: "Problem statement"
+      description: "What problem are you trying to solve?"
+      placeholder: "Describe the current limitation, pain point, or missed opportunity."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_solution
+    attributes:
+      label: "Proposed solution"
+      description: "What would you like to happen?"
+      placeholder: "Describe your ideal behavior or API change."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives_considered
+    attributes:
+      label: "Alternatives considered"
+      description: "What other approaches or workarounds did you consider?"
+      placeholder: "List any alternatives and why they are not sufficient."
+
+  - type: dropdown
+    id: impact
+    attributes:
+      label: "Impact"
+      description: "How much value would this provide?"
+      options:
+        - "High (unblocks key workflows or many users)"
+        - "Medium (improves common workflows)"
+        - "Low (nice-to-have improvement)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: references
+    attributes:
+      label: "References"
+      description: "Add links, examples, or specs that support the proposal."
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: "Additional context"
+      description: "Anything else maintainers should know?"

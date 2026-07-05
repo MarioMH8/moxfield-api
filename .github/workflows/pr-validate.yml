@@ -1,0 +1,229 @@
+name: "Pull Request: Validate"
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, labeled, unlabeled]
+
+jobs:
+  check-linked-issue:
+    name: Check linked issue
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify PR body references an issue
+        uses: actions/github-script@v9
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+            });
+            
+            const user = pr.user;
+            if (user.id === 29139614 && user.type === 'Bot') {
+              core.notice(`Renovate PR`);
+              return;
+            }
+            
+            const body = context.payload.pull_request.body || '';
+            const pattern = /(?:closes|fixes|resolves)\s+#(\d+)/gi;
+            const matches = [...body.matchAll(pattern)];
+            
+            if (matches.length === 0) {
+              core.error(`Every PR must be linked to an approved issue.`);
+              core.setFailed(
+                'PR body must reference a linked issue using one of:\n' +
+                '  - Closes #<number>\n' +
+                '  - Fixes #<number>\n' +
+                '  - Resolves #<number>'
+              );
+            } else {
+              const numbers = matches.map(m => `#${m[1]}`).join(', ');
+              core.info(`Found issue reference(s): ${numbers}`);
+            }
+
+  check-issue-status:
+    name: Check issue status
+    runs-on: ubuntu-latest
+    needs: check-linked-issue
+    steps:
+      - name: Verify linked issue(s) have status:approved label
+        uses: actions/github-script@v9
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+            });
+            
+            const user = pr.user;
+            if (user.id === 29139614 && user.type === 'Bot') {
+              core.notice(`Renovate PR`);
+              return;
+            }
+
+            const body = context.payload.pull_request.body || '';
+            const pattern = /(?:closes|fixes|resolves)\s+#(\d+)/gi;
+            const matches = [...body.matchAll(pattern)];
+
+            if (matches.length === 0) {
+              core.error(`Every PR must be linked to an approved issue.`);
+              core.setFailed(
+                'PR body must reference a linked issue using one of:\n' +
+                '  - Closes #<number>\n' +
+                '  - Fixes #<number>\n' +
+                '  - Resolves #<number>'
+              );
+              return;
+            }
+
+            const issueNumbers = matches.map(m => parseInt(m[1], 10));
+            const failures = [];
+
+            for (const issueNumber of issueNumbers) {
+              core.info(`Checking issue #${issueNumber} for status:approved label...`);
+
+              let issue;
+              try {
+                const response = await github.rest.issues.get({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issueNumber,
+                });
+                issue = response.data;
+              } catch (err) {
+                failures.push(`Could not fetch issue #${issueNumber}: ${err.message}`);
+                continue;
+              }
+
+              const labels = issue.labels.map(l => l.name);
+              core.info(`Labels on issue #${issueNumber}: ${labels.join(', ') || '(none)'}`);
+
+              if (!labels.includes('status:approved')) {
+                failures.push(
+                  `Issue #${issueNumber} does not have the "status:approved" label.\n` +
+                  '   Issues must be approved by a maintainer before work begins.\n' +
+                  '   Please comment on the issue and wait for it to be labelled status:approved.'
+                );
+              } else {
+                core.info(`Issue #${issueNumber} has status:approved.`);
+              }
+            }
+
+            if (failures.length > 0) {
+              core.error(`Every PR must be linked to an approved issue.`);
+              core.setFailed(failures.join('\n\n'));
+            }
+
+  check-pr-label:
+    name: Check PR label
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify PR has exactly one type:* label
+        uses: actions/github-script@v9
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+            });
+            
+            const labels = pr.labels.map(l => l.name);
+            const typeLabels = labels.filter(l => l.startsWith('type:'));
+            
+            core.info(`All PR labels: ${labels.join(', ') || '(none)'}`);
+            core.info(`type:* labels found: ${typeLabels.join(', ') || '(none)'}`);
+            
+            const user = pr.user;
+            if (user.id === 29139614 && user.type === 'Bot') {
+              core.notice(`Renovate PR`);
+              return;
+            }
+            
+            const validTypes = ['type:bug', 'type:feature', 'type:refactor', 'type:docs', 'type:chore', 'type:breaking-change'];
+
+            if (typeLabels.length === 0) {
+              core.error(`Every PR must have a valid type:* label.`);
+              core.setFailed(
+                'PR must have exactly one type:* label.\n\n' +
+                'Valid labels:\n' +
+                '  type:bug, type:feature, type:refactor,\n' +
+                '  type:docs, type:chore, type:breaking-change'
+              );
+            } else if (typeLabels.length > 1) {
+              core.error(`Every PR must have exactly one type:* label.`);
+              core.setFailed(
+                `PR has ${typeLabels.length} type:* labels: ${typeLabels.join(', ')}\n` +
+                'A PR must have exactly ONE type:* label. Please remove the extra one(s).'
+              );
+            } else if (!validTypes.includes(typeLabels[0])) {
+              core.error(`Invalid type label: ${typeLabels[0]}`);
+              core.setFailed(
+                `"${typeLabels[0]}" is not a valid type:* label.\n\n` +
+                'Valid labels:\n' +
+                '  type:bug, type:feature, type:refactor,\n' +
+                '  type:docs, type:chore, type:breaking-change'
+              );
+            } else {
+              core.info(`✅ PR has type label: ${typeLabels[0]}`);
+            }
+
+  check-pr-changeset:
+    name: Check PR changeset
+    runs-on: ubuntu-latest
+    needs: check-pr-label
+    if: needs.check-pr-label.result == 'success'
+    steps:
+      - name: Verify changeset
+        uses: actions/github-script@v9
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { data: pr } = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+            });
+            
+            const user = pr.user;
+            if (user.id === 29139614 && user.type === 'Bot') {
+              core.notice(`Renovate PR`);
+              return;
+            }
+
+            const labels = pr.labels.map(l => l.name);
+            const typeLabels = labels.filter(l => l.startsWith('type:'));
+            const requiresChangeset = ['type:bug', 'type:feature', 'type:refactor'];
+
+            if (typeLabels.length !== 1 || !requiresChangeset.includes(typeLabels[0])) {
+              core.info(`No changeset required for label: ${typeLabels[0] || 'none'}`);
+              return;
+            }
+
+            const { data: files } = await github.rest.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+            });
+
+            const changesetFiles = files.filter(f =>
+              f.status !== 'removed' &&
+              f.filename.startsWith('.changeset/') &&
+              f.filename.endsWith('.md') &&
+              f.filename !== '.changeset/README.md'
+            );
+
+            if (changesetFiles.length === 0) {
+              core.error(`PR labelled ${typeLabels[0]} must include a changeset.`);
+              core.setFailed(
+                'This PR changes user-facing behaviour and must include a changeset.\n' +
+                'Run `bun changeset` to create one, or add a .md file under .changeset/.'
+              );
+            } else {
+              core.info(`✅ Found ${changesetFiles.length} changeset(s): ${changesetFiles.map(f => f.filename).join(', ')}`);
+            }

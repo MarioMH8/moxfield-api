@@ -5,7 +5,7 @@
 </h1>
 
 <p align="center">
-  A Javascript library for <a href='https://moxfield.com' target='_blank'>moxfield.com</a> written in Typescript.
+  A JavaScript library for <a href='https://moxfield.com' target='_blank'>moxfield.com</a> written in TypeScript.
 </p>
 
 <p align="center">
@@ -83,4 +83,4 @@ bun run build
 
 ## MIT License
 
-[Copyright 2021-2025 MarioMH](./LICENSE)
+[Copyright 2021-2026 MarioMH](./LICENSE)

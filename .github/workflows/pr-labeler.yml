@@ -1,0 +1,14 @@
+name: "Pull Request: Add labels"
+on:
+  - pull_request_target
+
+jobs:
+  labeler:
+    name: Labeler
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add label
+        uses: actions/labeler@v6
