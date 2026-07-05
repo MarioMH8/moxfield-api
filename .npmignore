@@ -8,4 +8,4 @@ src
 bun.lockb
 renovate.json
 tsconfig.json
-tsup.config.ts
+tsdown.config.ts

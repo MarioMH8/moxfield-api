@@ -23,27 +23,18 @@
 	"files": [
 		"dist"
 	],
-	"main": "./dist/moxfield-api.js",
-	"module": "./dist/moxfield-api.js",
-	"types": "./dist/moxfield-api.d.ts",
+	"main": "./dist/moxfield-api.mjs",
+	"types": "./dist/moxfield-api.d.mts",
 	"exports": {
 		".": {
-			"import": {
-				"types": "./dist/moxfield-api.d.ts",
-				"default": "./dist/moxfield-api.js"
-			},
-			"require": {
-				"types": "./dist/moxfield-api.d.cts",
-				"default": "./dist/moxfield-api.cjs"
-			},
-			"default": "./dist/moxfield-api.js"
+			"import": "./dist/moxfield-api.d.mts"
 		}
 	},
 	"scripts": {
-		"build": "tsup",
+		"build": "tsdown",
 		"lint": "eslint .",
 		"lint:fix": "eslint --fix .",
-		"prepublishOnly": "tsup",
+		"prepublishOnly": "tsdown",
 		"test": "bun test",
 		"typecheck": "tsc --noEmit"
 	},
@@ -57,7 +48,7 @@
 		"@hexadrop/tsconfig": "0.0.5",
 		"@types/bun": "1.3.14",
 		"eslint": "10.6.0",
-		"tsup": "8.5.1",
+		"tsdown": "0.22.3",
 		"typescript": "6.0.3"
 	}
 }
