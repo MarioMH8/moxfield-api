@@ -56,6 +56,7 @@ const CardSchema = z.object({
 	isArenaLegal: z.boolean(),
 	isCovered: z.boolean(),
 	isPauperCommander: z.boolean(),
+	isTemporary: z.boolean(),
 	isToken: z.boolean(),
 	lang: z.string(),
 	latest: z.boolean(),
