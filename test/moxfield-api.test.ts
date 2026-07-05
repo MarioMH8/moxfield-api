@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it } from 'bun:test';
 
-import type { DeckListType } from '../src';
+import type { CardsNamedType, DeckListType, DeckSearchType } from '../src';
 import MoxfieldApi from '../src';
 import NotFoundMoxfieldError from '../src/error/not-found.error';
 
@@ -71,6 +71,138 @@ describe('moxfield-api', () => {
 				expect(findById).toThrow(expectedError);
 				expect(findById).toThrow(NotFoundMoxfieldError);
 			});
+		});
+	});
+
+	describe('deckSearch', () => {
+		describe('search', () => {
+			it('should return paginated results for a known commander', async () => {
+				const result: DeckSearchType = await api.deckSearch.search({
+					// Ozai, the Phoenix King
+					commanderCardId: 'b5Xg6',
+					fmt: 'commander',
+					pageNumber: 1,
+					pageSize: 10,
+				});
+
+				expect(result.pageNumber).toBe(1);
+				expect(result.pageSize).toBe(10);
+				expect(result.totalResults).toBeGreaterThan(0);
+				expect(result.totalPages).toBeGreaterThan(0);
+				expect(result.data.length).toBeGreaterThan(0);
+			}, 10_000);
+
+			it('each result should have required fields', async () => {
+				const result: DeckSearchType = await api.deckSearch.search({
+					commanderCardId: 'b5Xg6',
+					fmt: 'commander',
+					pageSize: 5,
+				});
+
+				for (const deck of result.data) {
+					expect(deck.id).toBeDefined();
+					expect(deck.name).toBeDefined();
+					expect(deck.format).toBe('commander');
+					expect(deck.publicId).toBeDefined();
+					expect(typeof deck.mainboardCount).toBe('number');
+					expect(typeof deck.likeCount).toBe('number');
+				}
+			}, 10_000);
+
+			it('limit should control the number of results returned', async () => {
+				const result: DeckSearchType = await api.deckSearch.search({
+					commanderCardId: 'b5Xg6',
+					limit: 3,
+				});
+
+				expect(result.pageSize).toBe(3);
+				expect(result.data.length).toBeLessThanOrEqual(3);
+			}, 10_000);
+
+			it('sort: "recent" should return results ordered by most recently updated', async () => {
+				const result: DeckSearchType = await api.deckSearch.search({
+					commanderCardId: 'b5Xg6',
+					limit: 10,
+					sort: 'recent',
+				});
+
+				expect(result.data.length).toBeGreaterThan(1);
+				const firstDate = result.data.at(0)?.lastUpdatedAtUtc ?? new Date(0);
+				const lastDate = result.data.at(-1)?.lastUpdatedAtUtc ?? new Date(0);
+				expect(firstDate.getTime()).toBeGreaterThanOrEqual(lastDate.getTime());
+			}, 10_000);
+
+			it('sort: "mostLiked" should return results ordered by descending like count', async () => {
+				const result: DeckSearchType = await api.deckSearch.search({
+					commanderCardId: 'b5Xg6',
+					limit: 10,
+					sort: 'mostLiked',
+				});
+
+				expect(result.data.length).toBeGreaterThan(1);
+				for (let index = 0; index < result.data.length - 1; index++) {
+					expect(result.data[index].likeCount).toBeGreaterThanOrEqual(result.data[index + 1].likeCount);
+				}
+			}, 10_000);
+
+			it('sort: "mostViewed" should return results ordered by descending view count', async () => {
+				const result: DeckSearchType = await api.deckSearch.search({
+					commanderCardId: 'b5Xg6',
+					limit: 10,
+					sort: 'mostViewed',
+				});
+
+				expect(result.data.length).toBeGreaterThan(1);
+				for (let index = 0; index < result.data.length - 1; index++) {
+					expect(result.data[index].viewCount).toBeGreaterThanOrEqual(result.data[index + 1].viewCount);
+				}
+			}, 10_000);
+		});
+	});
+
+	describe('cardsNamed', () => {
+		describe('findByName', () => {
+			it('should return matching cards respecting the count limit', async () => {
+				const result: CardsNamedType = await api.cardsNamed.findByName('Ozai', 5);
+
+				expect(result.cards.length).toBeGreaterThan(0);
+				expect(result.cards.length).toBeLessThanOrEqual(5);
+			}, 10_000);
+
+			it('each card should have required fields', async () => {
+				const result: CardsNamedType = await api.cardsNamed.findByName('Ozai', 3);
+
+				for (const card of result.cards) {
+					expect(card.id).toBeDefined();
+					expect(card.name).toBeDefined();
+					expect(card.scryfall_id).toBeDefined();
+				}
+			}, 10_000);
+		});
+
+		describe('findFirstByName', () => {
+			it('should return the correct card for an exact name', async () => {
+				const card = await api.cardsNamed.findFirstByName('Ozai, the Phoenix King');
+
+				expect(card).toBeDefined();
+				expect(card?.name).toBe('Ozai, the Phoenix King');
+				expect(card?.id).toBeDefined();
+			}, 10_000);
+
+			it('returned card id should be usable in deckSearch', async () => {
+				const card = await api.cardsNamed.findFirstByName('Ozai, the Phoenix King');
+
+				expect(card).toBeDefined();
+
+				const result: DeckSearchType = await api.deckSearch.search({
+					commanderCardId: card?.id,
+					fmt: 'commander',
+					pageSize: 5,
+				});
+
+				expect(result.totalResults).toBeGreaterThan(0);
+				expect(result.data.length).toBeGreaterThan(0);
+			}, 10_000);
 		});
 	});
 });
