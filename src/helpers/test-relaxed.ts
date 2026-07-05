@@ -1,10 +1,10 @@
-import type { ZodTypeAny } from 'zod';
+import type { ZodType } from 'zod';
 
 import isTest from './is-test';
 
-export default function testRelaxed<StrictSchema extends ZodTypeAny>(
+export default function testRelaxed<StrictSchema extends ZodType>(
 	strictSchema: StrictSchema,
-	relaxedSchema: ZodTypeAny
+	relaxedSchema: ZodType
 ): StrictSchema {
 	if (isTest()) {
 		return strictSchema;
