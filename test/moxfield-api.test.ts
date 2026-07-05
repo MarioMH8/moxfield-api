@@ -5,15 +5,10 @@ import MoxfieldApi from '../src';
 import NotFoundMoxfieldError from '../src/error/not-found.error';
 
 const decks = [
-	'9KgA_iH0nUiKkAn8W4g7yw',
 	'zpF7IZNK1UOUm800YcNa8w',
 	'AVn88Fg6wEKJlanM7hp-UQ',
 	'zzpX3bf9HUWWyz3xfPLPSA',
 	'sYPYT0j7e0ynfAhqQnQ34Q',
-	'2jDFBmNQbUuNd0hCXAdN-Q',
-	'dP3gY_Q4HUKiJwSpbbxHiQ',
-	'wm7tBo47yE6Cs8e8yG3pxQ',
-	'vbwntQA3vEe5t09mkytqEw',
 	'0eAo6mKFnkm33et94L9xcw',
 	'JHJNPU26_U6DN9Pt7-EWhg',
 	'gszeUVGkWEKJKI7IUvsV9g',
@@ -25,10 +20,6 @@ const decks = [
 	'G8mskkjteES7TUUghfXX5w',
 	'BAqsr-nr3EC-c3hW4DSSjw',
 	'K3cp7XNcDkSXp-K6Eg7lhg',
-	'_8XUkF8UV0-tNS-a-yhNJg',
-	'W7zhmkL7lU25QcCyn3EPhw',
-	'r1UXi2eZ7EqH8Ja3G4-SHA',
-	'q6fGFZsn-kyEkFk-uPVbCg',
 	'ahaLbinAG0WBmcSu0rhc4Q',
 	'https://moxfield.com/decks/f-K2-xxOhUW807uf1SdheA',
 	'https://moxfield.com/decks/sepRQdrvuUG9ctVMBgepAA',
@@ -43,6 +34,15 @@ const notFound = [
 	 * 'https://www.moxfield.com/decks/f29zyYl6IkSZlYxS2IMA8Q',
 	 * 'https://moxfield.com/decks/oww8YuIatkaj25VXdvf8xQ',
 	 */
+	'9KgA_iH0nUiKkAn8W4g7yw',
+	'2jDFBmNQbUuNd0hCXAdN-Q',
+	'dP3gY_Q4HUKiJwSpbbxHiQ',
+	'wm7tBo47yE6Cs8e8yG3pxQ',
+	'vbwntQA3vEe5t09mkytqEw',
+	'_8XUkF8UV0-tNS-a-yhNJg',
+	'W7zhmkL7lU25QcCyn3EPhw',
+	'r1UXi2eZ7EqH8Ja3G4-SHA',
+	'q6fGFZsn-kyEkFk-uPVbCg',
 	'https://moxfield.com/decks/AS-5NUNKi0yCxNtTasmF7g',
 ];
 

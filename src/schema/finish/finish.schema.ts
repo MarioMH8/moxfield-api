@@ -1,5 +1,9 @@
 import { z } from 'zod';
 
-const FinishSchema = z.union([z.literal('nonFoil'), z.literal('foil'), z.literal('etched'), z.literal('glossy')]);
+import { testRelaxed } from '../../helpers';
+
+const StrictFinishSchema = z.union([z.literal('nonFoil'), z.literal('foil'), z.literal('etched'), z.literal('glossy')]);
+
+const FinishSchema = testRelaxed(StrictFinishSchema, z.string());
 
 export default FinishSchema;

@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { testRelaxed } from '../../helpers';
+
 const LegalitiesFormatSchema = z.union([
 	z.literal('alchemy'),
 	z.literal('brawl'),
@@ -34,6 +36,8 @@ const LegalitiesValueSchema = z.union([
 	z.literal('restricted'),
 ]);
 
-const LegalitiesSchema = z.partialRecord(LegalitiesFormatSchema, LegalitiesValueSchema);
+const StrictLegalitiesSchema = z.partialRecord(LegalitiesFormatSchema, LegalitiesValueSchema);
+
+const LegalitiesSchema = testRelaxed(StrictLegalitiesSchema, z.record(z.string(), LegalitiesValueSchema));
 
 export default LegalitiesSchema;

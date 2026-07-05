@@ -1,6 +1,8 @@
 import { z } from 'zod';
 
-const SetTypeSchema = z.union([
+import { testRelaxed } from '../../helpers';
+
+const StrictSetTypeSchema = z.union([
 	z.literal('alchemy'),
 	z.literal('archenemy'),
 	z.literal('arsenal'),
@@ -26,5 +28,7 @@ const SetTypeSchema = z.union([
 	z.literal('treasure_chest'),
 	z.literal('vanguard'),
 ]);
+
+const SetTypeSchema = testRelaxed(StrictSetTypeSchema, z.string());
 
 export default SetTypeSchema;

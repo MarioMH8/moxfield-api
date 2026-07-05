@@ -1,6 +1,8 @@
 import { z } from 'zod';
 
-const BoardTypesSchema = z.union([
+import { testRelaxed } from '../../helpers';
+
+const StrictBoardTypesSchema = z.union([
 	z.literal('attractions'),
 	z.literal('commanders'),
 	z.literal('companions'),
@@ -15,5 +17,7 @@ const BoardTypesSchema = z.union([
 	z.literal('stickers'),
 	z.literal('tokens'),
 ]);
+
+const BoardTypesSchema = testRelaxed(StrictBoardTypesSchema, z.string());
 
 export default BoardTypesSchema;
