@@ -1,5 +1,16 @@
 # moxfield-api
 
+## 1.0.3
+
+### Patch Changes
+
+- 06c1f50: Add `tix_fb` to prices schema to match current API payloads in test mode.
+- 69adf35: Add Tiny Leaders Reborn (TLR) to list of legalities
+- 9d8e01a: Add `isTemporary` to card schema to match current API payloads in test mode.
+- 97be29c: Relax enum-like schema validation outside test mode so API additions do not break runtime parsing.
+- fbb9067: Use `partialRecord` for boards schema so optional board groups like `partners` do not fail strict test validation.
+- 740a3cc: Add `competitivebrawl` to legalities schema for strict test validation.
+
 ## 1.0.2
 
 ### Patch Changes
