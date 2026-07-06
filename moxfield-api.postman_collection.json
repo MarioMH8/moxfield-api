@@ -1,0 +1,202 @@
+{
+	"info": {
+		"_postman_id": "moxfield-api",
+		"name": "Moxfield API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://api2.moxfield.com",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "Deck List",
+			"item": [
+				{
+					"name": "Get deck by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v3/decks/all/:id",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "decks", "all", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "zpF7IZNK1UOUm800YcNa8w",
+									"description": "Deck public ID or full Moxfield deck URL"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Deck Search",
+			"item": [
+				{
+					"name": "Search decks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v2/decks/search-sfw?pageNumber=1&pageSize=10",
+							"host": ["{{baseUrl}}"],
+							"path": ["v2", "decks", "search-sfw"],
+							"query": [
+								{
+									"key": "q",
+									"value": "",
+									"description": "Free-text search query",
+									"disabled": true
+								},
+								{
+									"key": "fmt",
+									"value": "commander",
+									"description": "Format filter (e.g. commander, standard)",
+									"disabled": true
+								},
+								{
+									"key": "commanderCardId",
+									"value": "",
+									"description": "Filter by commander card ID",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": "1",
+									"description": "Page number (1-based)"
+								},
+								{
+									"key": "pageSize",
+									"value": "10",
+									"description": "Results per page"
+								},
+								{
+									"key": "sortType",
+									"value": "updated",
+									"description": "Sort field: created | updated | likes | views",
+									"disabled": true
+								},
+								{
+									"key": "sortDirection",
+									"value": "descending",
+									"description": "ascending | descending",
+									"disabled": true
+								},
+								{
+									"key": "minBracket",
+									"value": "",
+									"description": "Minimum bracket filter",
+									"disabled": true
+								},
+								{
+									"key": "maxBracket",
+									"value": "",
+									"description": "Maximum bracket filter",
+									"disabled": true
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Search decks by commander (most liked)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v2/decks/search-sfw?commanderCardId=b5Xg6&fmt=commander&pageNumber=1&pageSize=10&sortType=likes&sortDirection=descending",
+							"host": ["{{baseUrl}}"],
+							"path": ["v2", "decks", "search-sfw"],
+							"query": [
+								{
+									"key": "commanderCardId",
+									"value": "b5Xg6",
+									"description": "Ozai, the Phoenix King"
+								},
+								{
+									"key": "fmt",
+									"value": "commander"
+								},
+								{
+									"key": "pageNumber",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								},
+								{
+									"key": "sortType",
+									"value": "likes"
+								},
+								{
+									"key": "sortDirection",
+									"value": "descending"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Cards Named",
+			"item": [
+				{
+					"name": "Find cards by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v3/cards/named?q=Ozai&count=10",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "cards", "named"],
+							"query": [
+								{
+									"key": "q",
+									"value": "Ozai",
+									"description": "Card name search query (fuzzy)"
+								},
+								{
+									"key": "count",
+									"value": "10",
+									"description": "Maximum number of results to return"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Find first card by exact name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v3/cards/named?q=Ozai%2C+the+Phoenix+King&count=1",
+							"host": ["{{baseUrl}}"],
+							"path": ["v3", "cards", "named"],
+							"query": [
+								{
+									"key": "q",
+									"value": "Ozai, the Phoenix King",
+									"description": "Exact card name"
+								},
+								{
+									"key": "count",
+									"value": "1"
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+	]
+}
