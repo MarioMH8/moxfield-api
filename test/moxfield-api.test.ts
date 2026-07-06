@@ -119,6 +119,30 @@ describe('moxfield-api', () => {
 				expect(result.data.length).toBeLessThanOrEqual(3);
 			}, 10_000);
 
+			it('limit returns exactly the requested number of results when sufficient results exist', async () => {
+				const limit = 7;
+				const result: DeckSearchType = await api.deckSearch.search({
+					commanderCardId: 'b5Xg6',
+					limit,
+				});
+
+				expect(result.data.length).toBe(limit);
+			}, 10_000);
+
+			it('limit spanning multiple pages aggregates results without duplicates', async () => {
+				const limit = 12;
+				const result: DeckSearchType = await api.deckSearch.search({
+					fmt: 'commander',
+					limit,
+					pageSize: 5,
+					sort: 'mostViewed',
+				});
+
+				expect(result.data.length).toBe(limit);
+				const uniqueIds = new Set(result.data.map(d => d.id));
+				expect(uniqueIds.size).toBe(limit);
+			}, 15_000);
+
 			it('sort: "recent" should return results ordered by most recently updated', async () => {
 				const result: DeckSearchType = await api.deckSearch.search({
 					commanderCardId: 'b5Xg6',
