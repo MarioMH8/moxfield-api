@@ -165,7 +165,9 @@ describe('moxfield-api', () => {
 
 				expect(result.data.length).toBeGreaterThan(1);
 				for (let index = 0; index < result.data.length - 1; index++) {
-					expect(result.data[index].likeCount).toBeGreaterThanOrEqual(result.data[index + 1].likeCount);
+					expect(result.data.at(index)?.likeCount ?? 0).toBeGreaterThanOrEqual(
+						result.data.at(index + 1)?.likeCount ?? 0
+					);
 				}
 			}, 10_000);
 
@@ -178,7 +180,9 @@ describe('moxfield-api', () => {
 
 				expect(result.data.length).toBeGreaterThan(1);
 				for (let index = 0; index < result.data.length - 1; index++) {
-					expect(result.data[index].viewCount).toBeGreaterThanOrEqual(result.data[index + 1].viewCount);
+					expect(result.data.at(index)?.viewCount ?? 0).toBeGreaterThanOrEqual(
+						result.data.at(index + 1)?.viewCount ?? 0
+					);
 				}
 			}, 10_000);
 		});
@@ -219,7 +223,7 @@ describe('moxfield-api', () => {
 				expect(card).toBeDefined();
 
 				const result: DeckSearchType = await api.deckSearch.search({
-					commanderCardId: card?.id,
+					commanderCardId: card?.id ?? '',
 					fmt: 'commander',
 					pageSize: 5,
 				});
