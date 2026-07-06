@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import { testStrict } from '../../helpers';
 import { DeckSearchItemSchema } from '../deck-search-item';
 
 const DeckSearchSchema = z.object({
@@ -10,4 +11,4 @@ const DeckSearchSchema = z.object({
 	totalResults: z.number(),
 });
 
-export default DeckSearchSchema;
+export default testStrict(DeckSearchSchema);
