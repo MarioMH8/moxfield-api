@@ -15,7 +15,7 @@ const SORT_MAP = {
 interface DeckSearchOptions {
 	commanderCardId?: string;
 	fmt?: string;
-	/** Convenience alias for pageSize. */
+	/** Total number of results to return, auto-paginating across multiple pages as needed. */
 	limit?: number;
 	maxBracket?: number;
 	minBracket?: number;
@@ -36,18 +36,52 @@ class DeckSearchApi {
 
 		const resolved = {
 			...rest,
-			...(limit !== undefined && { pageSize: limit }),
 			...(sort !== undefined && SORT_MAP[sort]),
 		};
 
-		const parameters = new URLSearchParams();
-		for (const [key, value] of Object.entries(resolved)) {
-			parameters.set(key, String(value));
+		const buildUrl = (parameters_: Record<string, unknown>): string => {
+			const parameters = new URLSearchParams();
+			for (const [key, value] of Object.entries(parameters_)) {
+				parameters.set(key, String(value));
+			}
+
+			return `${API_BASE_URL}/v2/decks/search-sfw?${parameters}`;
+		};
+
+		if (limit === undefined) {
+			return fetchWithZod(DeckSearchSchema, buildUrl(resolved), { method: 'GET' });
 		}
 
-		return fetchWithZod(DeckSearchSchema, `${API_BASE_URL}/v2/decks/search-sfw?${parameters}`, {
-			method: 'GET',
-		});
+		const perPage = resolved.pageSize ?? Math.min(limit, 100);
+		const startPage = resolved.pageNumber ?? 1;
+
+		const firstResponse = await fetchWithZod(
+			DeckSearchSchema,
+			buildUrl({ ...resolved, pageNumber: startPage, pageSize: perPage }),
+			{ method: 'GET' }
+		);
+
+		const allData: DeckSearchType['data'] = [...firstResponse.data];
+
+		if (allData.length < limit && firstResponse.totalPages > startPage) {
+			const pagesNeeded = Math.ceil((limit - allData.length) / perPage);
+			const lastPage = Math.min(firstResponse.totalPages, startPage + pagesNeeded);
+			const pageNumbers = Array.from({ length: lastPage - startPage }, (_, index) => startPage + 1 + index);
+
+			const responses = await Promise.all(
+				pageNumbers.map(page =>
+					fetchWithZod(DeckSearchSchema, buildUrl({ ...resolved, pageNumber: page, pageSize: perPage }), {
+						method: 'GET',
+					})
+				)
+			);
+
+			for (const response of responses) {
+				allData.push(...response.data);
+			}
+		}
+
+		return { ...firstResponse, data: allData.slice(0, limit) };
 	}
 }
 
