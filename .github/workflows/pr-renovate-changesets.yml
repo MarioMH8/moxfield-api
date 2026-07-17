@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Add changeset
-        uses: mscharley/dependency-changesets-action@v1.2.4
+        uses: mscharley/dependency-changesets-action@v1.2.5
         with:
           token: ${{ github.token }}
           use-conventional-commits: true
