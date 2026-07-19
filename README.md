@@ -23,6 +23,11 @@
 - [Documentation](#documentation)
     - [Decklist](#decklist)
         - [`findById(id: string): Promise<DeckListType>`](#findbyidid-string-promisedecklisttype)
+    - [Deck Search](#deck-search)
+        - [`search(options?: DeckSearchOptions): Promise<DeckSearchType>`](#searchoptions-decksearchoptions-promisedecksearchtype)
+    - [Cards Named](#cards-named)
+        - [`findByName(q: string, count?: number): Promise<CardsNamedType>`](#findbynameq-string-count-number-promisecardsnamedtype)
+        - [`findFirstByName(q: string): Promise<CardNamedType | undefined>`](#findfirstbynameq-string-promisecardnamedtype--undefined)
 - [Contributing](#contributing)
 
 ## Installation
@@ -49,6 +54,72 @@ import MoxfieldApi from 'moxfield-api';
 const moxfield = new MoxfieldApi();
 
 const decklist = await moxfield.decklist.findById('https://moxfield.com/decks/oEWXWHM5eEGMmopExLWRCA'); // OR oEWXWHM5eEGMmopExLWRCA
+```
+
+### Deck Search
+
+#### `search(options?: DeckSearchOptions): Promise<DeckSearchType>`
+
+Searches for decks with optional filtering and sorting. When `limit` is provided the method automatically paginates across multiple pages (fetching remaining pages in parallel) and returns exactly `limit` results.
+
+```typescript
+import MoxfieldApi from 'moxfield-api';
+
+const moxfield = new MoxfieldApi();
+
+// Single page
+const results = await moxfield.deckSearch.search({ fmt: 'commander', pageSize: 20 });
+
+// Auto-paginate — fetches as many pages as needed to return 150 results
+const bulk = await moxfield.deckSearch.search({ fmt: 'commander', limit: 150 });
+
+// Filter by commander card, sorted by most liked
+const ozaiDecks = await moxfield.deckSearch.search({
+  commanderCardId: 'b5Xg6',
+  fmt: 'commander',
+  limit: 50,
+  sort: 'mostLiked',
+});
+```
+
+| Option | Type | Description |
+|---|---|---|
+| `limit` | `number` | Total results to return, auto-paginating as needed |
+| `pageNumber` | `number` | Starting page (default: `1`) |
+| `pageSize` | `number` | Results per page when paginating (default: `min(limit, 100)`) |
+| `fmt` | `string` | Format filter (e.g. `commander`, `standard`) |
+| `q` | `string` | Free-text search query |
+| `commanderCardId` | `string` | Filter by commander card ID |
+| `sort` | `'mostLiked' \| 'mostViewed' \| 'recent'` | Convenience sort shorthand |
+| `sortType` | `'created' \| 'likes' \| 'updated' \| 'views'` | Sort field |
+| `sortDirection` | `'ascending' \| 'descending'` | Sort direction |
+| `minBracket` | `number` | Minimum bracket filter |
+| `maxBracket` | `number` | Maximum bracket filter |
+
+### Cards Named
+
+#### `findByName(q: string, count?: number): Promise<CardsNamedType>`
+
+Fuzzy card name search. Returns up to `count` matching cards (default: `10`).
+
+```typescript
+import MoxfieldApi from 'moxfield-api';
+
+const moxfield = new MoxfieldApi();
+
+const results = await moxfield.cardsNamed.findByName('Ozai', 5);
+```
+
+#### `findFirstByName(q: string): Promise<CardNamedType | undefined>`
+
+Returns the single best match for a card name, or `undefined` if none found.
+
+```typescript
+import MoxfieldApi from 'moxfield-api';
+
+const moxfield = new MoxfieldApi();
+
+const card = await moxfield.cardsNamed.findFirstByName('Ozai, the Phoenix King');
 ```
 
 ## Contributing
