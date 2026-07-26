@@ -1,5 +1,11 @@
 # moxfield-api
 
+## 2.1.0
+
+### Minor Changes
+
+- c429164: Include `providerPrices` in card schema
+
 ## 2.0.0
 
 ### Major Changes
