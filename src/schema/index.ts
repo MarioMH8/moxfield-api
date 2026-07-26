@@ -21,6 +21,7 @@ export * from './meld-result';
 export * from './original-deck';
 export * from './prices';
 export * from './print-card';
+export * from './provider-prices';
 export * from './rarity';
 export * from './set-type';
 export * from './token-mappings';

@@ -7,6 +7,7 @@ import { LegalitiesSchema } from '../legalities';
 import { MeldPartSchema } from '../meld-part';
 import { MeldResultSchema } from '../meld-result';
 import { PricesSchema } from '../prices';
+import { ProviderPricesSchema } from '../provider-prices';
 import { RaritySchema } from '../rarity';
 import { SetTypeSchema } from '../set-type';
 
@@ -79,6 +80,7 @@ const CardSchema = z.object({
 	printed_text: z.string().nullish(),
 	printed_type_line: z.string().nullish(),
 	promo_types: z.array(z.string()),
+	providerPrices: ProviderPricesSchema.nullish(),
 	rarity: RaritySchema,
 	released_at: z.coerce.date().nullish(),
 	reprint: z.boolean(),
