@@ -81,6 +81,8 @@ Compile the project
 bun run build
 ```
 
+You can read the full [contribution](./CONTRIBUTING.md) guidelines.
+
 ## MIT License
 
 [Copyright 2021-2026 MarioMH](./LICENSE)
