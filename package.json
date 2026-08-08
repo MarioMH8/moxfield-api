@@ -56,6 +56,6 @@
 		"husky": "9.1.7",
 		"lint-staged": "17.3.0",
 		"tsdown": "0.22.14",
-		"typescript": "6.0.3"
+		"typescript": "7.0.2"
 	}
 }
