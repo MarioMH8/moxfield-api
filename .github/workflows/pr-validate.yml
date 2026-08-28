@@ -17,7 +17,7 @@ jobs:
           uses: actions/checkout@v7
 
       -   name: Validate
-          uses: hexadrop/validate-pr-action@v1.0.0
+          uses: hexadrop/validate-pr-action@v1.0.8
           with:
             github-token: ${{ secrets.GITHUB_TOKEN }}
             skip-validation-labels: release,internal:sync
