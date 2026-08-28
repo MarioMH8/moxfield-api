@@ -23,8 +23,6 @@
 	"files": [
 		"dist"
 	],
-	"main": "./dist/moxfield-api.mjs",
-	"types": "./dist/moxfield-api.d.mts",
 	"exports": {
 		".": {
 			"types": "./dist/moxfield-api.d.mts",
