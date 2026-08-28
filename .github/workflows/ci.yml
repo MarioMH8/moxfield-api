@@ -1,84 +1,16 @@
 name: Continuous integration
 
 on:
-    push:
-        branches: [ main ]
-    pull_request:
-        branches: [ main ]
-        types: [ opened, synchronize ]
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+    types: [ opened, synchronize ]
 
 jobs:
-    check:
-        name: Code check
-        runs-on: ubuntu-latest
-        permissions:
-            contents: 'read'
-            id-token: 'write'
-        strategy:
-            matrix:
-                command: [ 'lint:ci', typecheck, test ]
-        steps:
-            -   name: Checkout
-                uses: actions/checkout@v7
-
-            -   name: Setup bun
-                uses: oven-sh/setup-bun@v2
-                with:
-                    bun-version: latest
-
-            -   name: Install dependencies
-                run: bun install
-
-            - name: ESLint cache
-              uses: actions/cache@v6
-              if: matrix.command == 'lint:ci'
-              with:
-                  path: .eslintcache
-                  key: ${{ runner.os }}-node
-
-            -   name: ${{ matrix.command }}
-                run: bun ${{ matrix.command }}
-
-    release:
-        name: Release
-        runs-on: ubuntu-latest
-        if: ${{ github.event_name == 'push' }}
-        needs: [ check ]
-        permissions:
-            contents: 'write'
-            id-token: 'write'
-            issues: 'write'
-            pull-requests: 'write'
-        steps:
-            -   name: Checkout
-                uses: actions/checkout@v7
-
-            -   name: Setup bun
-                uses: oven-sh/setup-bun@v2
-                with:
-                    bun-version: latest
-
-            -   name: Setup Node.js
-                uses: actions/setup-node@v7
-                with:
-                    node-version: '24'
-                    registry-url: 'https://registry.npmjs.org'
-
-            -   name: Install dependencies
-                run: bun install
-
-            -   name: Capture release version
-                run: |
-                    bun changeset status --output=release.json
-                    echo "NEW_VERSION=$(jq -r '.releases[0].newVersion' release.json)" >> "$GITHUB_ENV"
-                    rm release.json
-
-            -   name: Create Release Pull Request or Publish to npm
-                uses: changesets/action@v2.1.1
-                with:
-                    publish: bun changeset publish
-                    version: bun changeset version
-                    commit: 'chore: release v${{env.NEW_VERSION}}'
-                    title: 'chore: release v${{env.NEW_VERSION}}'
-                env:
-                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  check:
+    name: Check
+    uses: hexadrop/github-workflows/.github/workflows/check.yml@v1.0.0
+    with:
+      commands: '["lint:ci", "typecheck", "test"]'
+      cache-commands: '["lint:ci"]'
