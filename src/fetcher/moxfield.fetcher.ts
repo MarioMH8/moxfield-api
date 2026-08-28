@@ -14,7 +14,9 @@ export default function createMoxfieldFetcher<TFetcher extends FetcherType>(
 			throw new NotFoundMoxfieldError();
 		}
 		if (response.status === 429) {
-			throw new RateLimitedMoxfieldError();
+			const retryAfterHeader = response.headers.get('Retry-After');
+			const retryAfter = retryAfterHeader === null ? undefined : Number.parseInt(retryAfterHeader, 10);
+			throw new RateLimitedMoxfieldError(retryAfter);
 		}
 
 		const object = (await response.json()) as object;
