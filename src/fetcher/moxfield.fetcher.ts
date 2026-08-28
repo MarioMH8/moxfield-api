@@ -1,4 +1,4 @@
-import { MoxfieldError, NotFoundMoxfieldError } from '../error';
+import { MoxfieldError, NotFoundMoxfieldError, RateLimitedMoxfieldError } from '../error';
 import type { FetcherType } from './fetcher.type';
 
 export default function createMoxfieldFetcher<TFetcher extends FetcherType>(
@@ -12,6 +12,9 @@ export default function createMoxfieldFetcher<TFetcher extends FetcherType>(
 		}
 		if (response.status === 404) {
 			throw new NotFoundMoxfieldError();
+		}
+		if (response.status === 429) {
+			throw new RateLimitedMoxfieldError();
 		}
 
 		const object = (await response.json()) as object;
