@@ -16,8 +16,5 @@ jobs:
     name: Release
     needs: [ check ]
     uses: hexadrop/github-workflows/.github/workflows/release-prepare.yml@v1.0.0
-    permissions:
-      contents: write
-      pull-requests: write
     with:
       base-branch: main
