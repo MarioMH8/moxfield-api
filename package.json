@@ -27,7 +27,8 @@
 	"types": "./dist/moxfield-api.d.mts",
 	"exports": {
 		".": {
-			"import": "./dist/moxfield-api.d.mts"
+			"types": "./dist/moxfield-api.d.mts",
+			"import": "./dist/moxfield-api.mjs"
 		}
 	},
 	"scripts": {
