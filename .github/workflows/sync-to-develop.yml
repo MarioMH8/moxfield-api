@@ -1,0 +1,13 @@
+name: "Sync to develop"
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+jobs:
+  sync-to-develop:
+    name: Sync to develop
+    uses: hexadrop/github-workflows/.github/workflows/sync-to-develop.yml@v1.0.0
+    with:
+      pr-title: 'chore: sync from {{main_branch}} to {{develop_branch}}'

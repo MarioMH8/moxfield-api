@@ -1,6 +1,6 @@
 {
 	"name": "moxfield-api",
-	"version": "2.1.0",
+	"version": "2.2.0",
 	"description": "A Javascript library for https://moxfield.com written in Typescript.",
 	"keywords": [
 		"deck",
@@ -23,11 +23,10 @@
 	"files": [
 		"dist"
 	],
-	"main": "./dist/moxfield-api.mjs",
-	"types": "./dist/moxfield-api.d.mts",
 	"exports": {
 		".": {
-			"import": "./dist/moxfield-api.d.mts"
+			"types": "./dist/moxfield-api.d.mts",
+			"import": "./dist/moxfield-api.mjs"
 		}
 	},
 	"scripts": {

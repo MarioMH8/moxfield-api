@@ -1,0 +1,25 @@
+name: "Release"
+
+on:
+  push:
+    branches: [ main, develop ]
+
+jobs:
+  detect-changeset-change:
+    name: Changeset
+    uses: hexadrop/github-workflows/.github/workflows/detect-changeset-change.yml@v1.0.0
+
+  publish:
+    name: Publish
+    needs: [ detect-changeset-change ]
+    if: github.ref == 'refs/heads/main' || needs.detect-changeset-change.outputs.should_publish_beta == 'true'
+    permissions:
+      contents: 'write'
+      id-token: 'write'
+      issues: 'write'
+      pull-requests: 'write'
+    uses: hexadrop/github-workflows/.github/workflows/release.yml@v1.0.0
+    with:
+      snapshot: ${{ github.ref == 'refs/heads/develop' }}
+      concurrency-group: release-${{ github.ref_name }}
+

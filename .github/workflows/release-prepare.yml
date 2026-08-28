@@ -1,0 +1,12 @@
+name: "Release: prepare"
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  release-prepare:
+    name: Release
+    uses: hexadrop/github-workflows/.github/workflows/release-prepare.yml@v1.0.0
+    with:
+      base-branch: main
