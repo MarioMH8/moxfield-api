@@ -4,10 +4,10 @@ import { createZodFetcher } from 'zod-fetch';
 import createMoxfieldFetcher from '../../fetcher';
 import type { DeckListType } from '../../schema';
 import { DeckListSchema } from '../../schema';
+import API_BASE_URL from '../base-url';
 
 const MOXFIELD_DECK_URL_PREFIX = 'https://moxfield.com/decks/';
 const MOXFIELD_DECK_URL_PREFIX_WWW = 'https://www.moxfield.com/decks/';
-const API_BASE_URL = 'https://api2.moxfield.com';
 const deckListIdSchema = z.coerce
 	.string()
 	.describe('DeckList id')
