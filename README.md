@@ -27,8 +27,8 @@
         - [`search(options?: DeckSearchOptions): Promise<DeckSearchType>`](#searchoptions-decksearchoptions-promisedecksearchtype)
         - [`searchTop(options: DeckSearchTopOptions): Promise<DeckSearchType>`](#searchtopoptions-decksearchtopoptions-promisedecksearchtype)
     - [Cards Named](#cards-named)
-        - [`findByName(q: string, count?: number): Promise<CardsNamedType>`](#findbynameq-string-count-number-promisecardsnamedtype)
-        - [`findFirstByName(q: string): Promise<CardNamedType | undefined>`](#findfirstbynameq-string-promisecardnamedtype--undefined)
+        - [`findByName(q: string, count?: number): Promise<{ cards: CardType[] }>`](#findbynameq-string-count-number-promisecardsnamedtype)
+        - [`findFirstByName(q: string): Promise<CardType | undefined>`](#findfirstbynameq-string-promisecardnamedtype--undefined)
 - [Contributing](#contributing)
 
 ## Installation
@@ -110,7 +110,7 @@ const ozaiDecks = await moxfield.deckSearch.searchTop({
 
 ### Cards Named
 
-#### `findByName(q: string, count?: number): Promise<CardsNamedType>`
+#### `findByName(q: string, count?: number): Promise<{ cards: CardType[] }>`
 
 Fuzzy card name search. Returns up to `count` matching cards (default: `10`).
 
@@ -122,7 +122,7 @@ const moxfield = new MoxfieldApi();
 const results = await moxfield.cardsNamed.findByName('Ozai', 5);
 ```
 
-#### `findFirstByName(q: string): Promise<CardNamedType | undefined>`
+#### `findFirstByName(q: string): Promise<CardType | undefined>`
 
 Returns the single best match for a card name, or `undefined` if none found.
 

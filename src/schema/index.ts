@@ -7,8 +7,6 @@ export * from './board-type';
 export * from './boards';
 export * from './card';
 export * from './card-face';
-export * from './card-named';
-export * from './cards-named';
 export * from './cards-to-tokens';
 export * from './color-identity';
 export * from './color-identity-percentages';

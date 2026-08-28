@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it } from 'bun:test';
 
-import type { CardsNamedType, DeckListType, DeckSearchType } from '../src';
+import type { CardType, DeckListType, DeckSearchType } from '../src';
 import MoxfieldApi from '../src';
 import NotFoundMoxfieldError from '../src/error/not-found.error';
 
@@ -192,14 +192,14 @@ describe('moxfield-api', () => {
 	describe('cardsNamed', () => {
 		describe('findByName', () => {
 			it('should return matching cards respecting the count limit', async () => {
-				const result: CardsNamedType = await api.cardsNamed.findByName('Ozai', 5);
+				const result: { cards: CardType[] } = await api.cardsNamed.findByName('Ozai', 5);
 
 				expect(result.cards.length).toBeGreaterThan(0);
 				expect(result.cards.length).toBeLessThanOrEqual(5);
 			}, 10_000);
 
 			it('each card should have required fields', async () => {
-				const result: CardsNamedType = await api.cardsNamed.findByName('Ozai', 3);
+				const result: { cards: CardType[] } = await api.cardsNamed.findByName('Ozai', 3);
 
 				for (const card of result.cards) {
 					expect(card.id).toBeDefined();
