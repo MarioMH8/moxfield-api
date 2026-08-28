@@ -123,4 +123,7 @@ dist
 !.yarn/sdks
 !.yarn/versions
 
+# HAR files (may contain sensitive network data)
+*.har
+
 .DS_Store
