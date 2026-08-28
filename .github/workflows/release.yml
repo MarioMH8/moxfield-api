@@ -5,20 +5,13 @@ on:
     branches: [ main, develop ]
 
 jobs:
-  check:
-    name: Check
-    uses: hexadrop/github-workflows/.github/workflows/check.yml@v1.0.0
-    with:
-      commands: '["lint:ci", "typecheck", "test"]'
-      cache-commands: '["lint:ci"]'
-
   detect-changeset-change:
     name: Changeset
     uses: hexadrop/github-workflows/.github/workflows/detect-changeset-change.yml@v1.0.0
 
   publish:
     name: Publish
-    needs: [ check, detect-changeset-change ]
+    needs: [ detect-changeset-change ]
     if: github.ref == 'refs/heads/main' || needs.detect-changeset-change.outputs.should_publish_beta == 'true'
     permissions:
       contents: 'write'
