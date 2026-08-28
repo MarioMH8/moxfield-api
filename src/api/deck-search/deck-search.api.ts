@@ -33,14 +33,18 @@ const deckSearchOptionsSchema = z.object({
 	 * instead of the unfiltered one (`/v2/decks/search`). Defaults to `true`.
 	 */
 	sfw: z.boolean().optional(),
-	/** Convenience shorthand for common sort orders. Takes precedence over sortType/sortDirection. */
+	/**
+	 * Convenience shorthand for common sort orders. Takes precedence over sortType/sortDirection.
+	 */
 	sort: z.enum(['mostLiked', 'mostViewed', 'recent']).optional(),
 	sortDirection: z.enum(['ascending', 'descending']).optional(),
 	sortType: z.enum(SORT_TYPES).optional(),
 });
 
 const deckSearchTopOptionsSchema = deckSearchOptionsSchema.omit({ pageNumber: true, pageSize: true }).extend({
-	/** Total number of results to return, auto-paginating across multiple pages as needed. */
+	/**
+	 * Total number of results to return, auto-paginating across multiple pages as needed.
+	 */
 	limit: z.number().int().positive(),
 	pageSize: z.number().int().min(1).max(100).optional(),
 });
