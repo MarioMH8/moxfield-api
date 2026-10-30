@@ -10,7 +10,7 @@ on:
 jobs:
   check:
     name: Check
-    uses: hexadrop/github-workflows/.github/workflows/check.yml@v1.0.0
+    uses: hexadrop/github-workflows/.github/workflows/check.yml@v1.7.2
     with:
       commands: '["lint:ci", "typecheck", "test"]'
       cache-commands: '["lint:ci"]'

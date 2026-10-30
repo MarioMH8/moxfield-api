@@ -11,4 +11,4 @@ permissions:
 jobs:
   audit:
     name: Audit
-    uses: hexadrop/github-workflows/.github/workflows/merge-audit.yml@v1.7.1
+    uses: hexadrop/github-workflows/.github/workflows/merge-audit.yml@v1.7.2
