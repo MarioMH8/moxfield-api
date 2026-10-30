@@ -7,7 +7,7 @@ on:
 jobs:
   detect-changeset-change:
     name: Changeset
-    uses: hexadrop/github-workflows/.github/workflows/detect-changeset-change.yml@v1.0.0
+    uses: hexadrop/github-workflows/.github/workflows/detect-changeset-change.yml@v1.5.1
 
   publish:
     name: Publish
@@ -18,7 +18,7 @@ jobs:
       id-token: 'write'
       issues: 'write'
       pull-requests: 'write'
-    uses: hexadrop/github-workflows/.github/workflows/release.yml@v1.0.0
+    uses: hexadrop/github-workflows/.github/workflows/release.yml@v1.5.1
     with:
       snapshot: ${{ github.ref == 'refs/heads/develop' }}
       concurrency-group: release-${{ github.ref_name }}

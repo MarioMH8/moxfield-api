@@ -7,7 +7,7 @@ on:
 jobs:
   release-prepare:
     name: Release
-    uses: hexadrop/github-workflows/.github/workflows/release-prepare.yml@v1.3.0
+    uses: hexadrop/github-workflows/.github/workflows/release-prepare.yml@v1.5.1
     with:
       base-branch: main
       use-app-token: true
