@@ -9,6 +9,6 @@ permissions: {}
 jobs:
   merge:
     name: Merge
-    uses: hexadrop/github-workflows/.github/workflows/merge-command.yml@v1.4.2
+    uses: hexadrop/github-workflows/.github/workflows/merge-command.yml@v1.7.0
     secrets:
       app-private-key: ${{ secrets.HEXABOT_PRIVATE_KEY }}
