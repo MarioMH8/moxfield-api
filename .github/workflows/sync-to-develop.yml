@@ -1,0 +1,16 @@
+name: "Sync to develop"
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+jobs:
+  sync-to-develop:
+    name: Sync to develop
+    uses: hexadrop/github-workflows/.github/workflows/sync-to-develop.yml@v1.7.4
+    with:
+      pr-title: 'chore: sync from {{main_branch}} to {{develop_branch}}'
+      use-app-token: true
+    secrets:
+      app-private-key: ${{ secrets.HEXABOT_PRIVATE_KEY }}

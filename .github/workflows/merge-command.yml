@@ -1,0 +1,14 @@
+name: "Pull Request: merge"
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions: {}
+
+jobs:
+  merge:
+    name: Merge
+    uses: hexadrop/github-workflows/.github/workflows/merge-command.yml@v1.7.4
+    secrets:
+      app-private-key: ${{ secrets.HEXABOT_PRIVATE_KEY }}

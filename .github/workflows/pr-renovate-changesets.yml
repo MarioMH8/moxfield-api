@@ -2,22 +2,13 @@ name: "Pull Request: Add changeset to renovate updates"
 
 on:
   pull_request_target:
-    types: [opened, synchronize, labeled]
+    types: [opened, synchronize, reopened, labeled]
 
-permissions:
-  contents: write
-  pull-requests: write
+permissions: {}
 
 jobs:
-  renovate:
-    name: Renovate
-    runs-on: ubuntu-latest
-    if: contains(github.event.pull_request.labels.*.name, 'dependencies')
-
-    steps:
-      - name: Add changeset
-        uses: mscharley/dependency-changesets-action@v1.2.5
-        with:
-          token: ${{ github.token }}
-          use-conventional-commits: true
-          sign-commits: true
+  changeset:
+    name: Changeset
+    uses: hexadrop/github-workflows/.github/workflows/renovate-changesets.yml@v1.7.4
+    secrets:
+      app-private-key: ${{ secrets.HEXABOT_PRIVATE_KEY }}

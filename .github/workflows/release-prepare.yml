@@ -1,0 +1,15 @@
+name: "Release: prepare"
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  release-prepare:
+    name: Release
+    uses: hexadrop/github-workflows/.github/workflows/release-prepare.yml@v1.7.4
+    with:
+      base-branch: main
+      use-app-token: true
+    secrets:
+      app-private-key: ${{ secrets.HEXABOT_PRIVATE_KEY }}
