@@ -8,7 +8,7 @@ on:
 jobs:
   sync-to-develop:
     name: Sync to develop
-    uses: hexadrop/github-workflows/.github/workflows/sync-to-develop.yml@v1.7.3
+    uses: hexadrop/github-workflows/.github/workflows/sync-to-develop.yml@v1.7.4
     with:
       pr-title: 'chore: sync from {{main_branch}} to {{develop_branch}}'
       use-app-token: true
