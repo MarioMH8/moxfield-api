@@ -88,10 +88,22 @@ bun run build
 
 ## Testing
 
-Run the full test suite:
+Run the unit test suite (the same tests CI runs):
 
 ```bash
-bun test
+bun run test
+```
+
+Run the API integration tests against the real Moxfield API:
+
+```bash
+bun run test:integration
+```
+
+Run the complete suite:
+
+```bash
+bun run test:all
 ```
 
 Run tests for a specific file:
@@ -267,7 +279,7 @@ Review feedback should be warm, direct, and useful quickly. Start with the actio
 
 - [ ] There is a linked approved issue (`Closes #<N>`)
 - [ ] Commits are organized by deliverable work unit
-- [ ] All tests pass (`bun test`)
+- [ ] All unit tests pass (`bun run test`)
 - [ ] Commits follow Conventional Commits format
 - [ ] A changeset is included for any package behavior change (`bun changeset add`)
 - [ ] Code is self-reviewed
@@ -300,7 +312,7 @@ All PRs go through automated checks:
 | **Check Issue Reference**           | PR body contains `Closes/Fixes/Resolves #N`        |
 | **Check Issue Has status:approved** | The linked issue has been approved by a maintainer |
 | **Check PR Has type:* Label**       | Exactly one `type:*` label is applied              |
-| **Tests**                           | `bun test` passes                                  |
+| **Tests**                           | `bun run test` passes                              |
 | **ESLint**                          | `bun run lint:ci` passes                           |
 | **Typecheck**                       | `bun run typecheck` passes                         |
 

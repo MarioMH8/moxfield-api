@@ -46,6 +46,6 @@ PRs targeting `main` are gated by:
 - **Check Issue Has `status:approved`** — the linked issue is approved
 - **Check PR Has `type:*` Label** — exactly one `type:*` label
 - **Check PR Changeset** — a `.changeset/*.md` file exists when the type requires one (`type:bug`, `type:feature`, `type:refactor`)
-- **Tests**, **ESLint**, **Typecheck** — via `ci.yml`
+- **Tests**, **ESLint**, **Typecheck** — via `ci.yml`. The test job runs the unit suite (`bun run test`); live API tests are opt-in with `bun run test:integration`.
 
 Exceptions: Renovate PRs and PRs labeled `release` / `internal:sync` skip the issue and type requirements.

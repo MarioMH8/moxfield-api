@@ -37,7 +37,9 @@
 		"lint:fix": "eslint --cache --fix .",
 		"prepare": "husky",
 		"prepublishOnly": "tsdown",
-		"test": "bun test",
+		"test": "bun test src",
+		"test:all": "bun test",
+		"test:integration": "bun test test",
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
