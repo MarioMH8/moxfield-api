@@ -9,6 +9,6 @@ permissions: {}
 jobs:
   changeset:
     name: Changeset
-    uses: hexadrop/github-workflows/.github/workflows/renovate-changesets.yml@v1.7.5
+    uses: hexadrop/github-workflows/.github/workflows/renovate-changesets.yml@v1.13.0
     secrets:
       app-private-key: ${{ secrets.HEXABOT_PRIVATE_KEY }}
