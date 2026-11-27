@@ -4,5 +4,6 @@
 		"types": [
 			"bun"
 		]
-	}
+	},
+	"exclude": ["**/dist", "**/node_modules"]
 }

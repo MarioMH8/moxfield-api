@@ -4,7 +4,7 @@
  */
 const config = {
 	'*': 'bun run lint:fix',
-	'*.test.ts': 'bun test',
+	'*.test.ts': 'bun run test',
 };
 
 export default config;
