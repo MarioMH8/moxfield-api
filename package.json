@@ -52,7 +52,7 @@
 		"@commitlint/config-conventional": "21.2.4",
 		"@hexadrop/eslint-config": "1.3.3",
 		"@hexadrop/tsconfig": "0.0.5",
-		"@types/bun": "1.4.4",
+		"@types/bun": "1.4.5",
 		"eslint": "10.15.0",
 		"husky": "9.1.7",
 		"lint-staged": "17.6.1",
